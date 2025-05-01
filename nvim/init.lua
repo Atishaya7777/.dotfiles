@@ -202,7 +202,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  -- 'github/copilot.vim',
+  'github/copilot.vim',
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -693,14 +693,14 @@ require('lazy').setup({
           filetypes = {
             'css',
             -- 'html',
-            -- 'javascript',
-            -- 'javascriptreact',
+            'javascript',
+            'javascriptreact',
             'sass',
             'scss',
             'pug',
             -- 'astro',
             'typescriptreact',
-            -- 'typescript',
+            'typescript',
           },
         },
         texlab = {
@@ -775,11 +775,11 @@ require('lazy').setup({
         lua = { 'stylua' },
         python = { 'isort', 'black' },
         -- NOTE: Removed this chunk because it kept interfering with LG work
-        -- javascript = { { 'eslint' } },
-        -- typescript = { { 'eslint' } },
-        -- javascriptreact = { { 'eslint' } },
-        -- typescriptreact = { { 'eslint' } },
-        -- astro = { { 'eslint', 'prettier' } },
+        javascript = { { 'eslint' } },
+        typescript = { { 'eslint' } },
+        javascriptreact = { { 'eslint' } },
+        typescriptreact = { { 'eslint' } },
+        astro = { { 'eslint', 'prettier' } },
       },
     },
   },
