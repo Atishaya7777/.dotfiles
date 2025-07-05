@@ -189,3 +189,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /Users/atishayamaharjan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 . "$HOME/.local/bin/env"
+export PATH="/Users/atishayamaharjan/.pixi/bin:$PATH"
