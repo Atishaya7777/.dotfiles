@@ -2,13 +2,10 @@
 return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-  
-  -- GitHub Copilot
-  'github/copilot.vim',
-  
+
   -- Async library
   'nvim-neotest/nvim-nio',
-  
+
   -- Surround text objects
   {
     'kylechui/nvim-surround',
@@ -20,7 +17,7 @@ return {
       }
     end,
   },
-  
+
   -- Color highlighter for hex/rgb/rgba codes
   {
     'norcalli/nvim-colorizer.lua',
@@ -30,10 +27,10 @@ return {
       }
     end,
   },
-  
+
   -- Comment toggle
   { 'numToStr/Comment.nvim', opts = {} },
-  
+
   -- Collection of various small independent plugins/modules
   {
     'echasnovski/mini.nvim',
@@ -72,17 +69,17 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  
+
   -- Promise dependency for nvim-ufo
   { 'kevinhwang91/promise-async' },
-  
+
   -- Code folding
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function() end,
   },
-  
+
   -- Autoformat
   {
     'stevearc/conform.nvim',
@@ -127,12 +124,12 @@ return {
       },
     },
   },
-  
+
   -- Highlight todo, notes, etc in comments
-  { 
-    'folke/todo-comments.nvim', 
-    event = 'VimEnter', 
-    dependencies = { 'nvim-lua/plenary.nvim' }, 
-    opts = { signs = false } 
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
   },
 }
