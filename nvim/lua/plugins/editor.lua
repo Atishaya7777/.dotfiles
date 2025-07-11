@@ -101,10 +101,10 @@ return {
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = {
-          -- typescript = true,
-          -- javascript = true,
-          -- javascriptreact = true,
-          -- typescriptreact = true,
+          typescript = true,
+          javascript = true,
+          javascriptreact = true,
+          typescriptreact = true,
           astro = true,
         }
         return {

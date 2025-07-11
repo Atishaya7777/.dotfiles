@@ -2,7 +2,7 @@
 return {
   -- Web dev icons
   { 'nvim-tree/nvim-web-devicons', opts = {} },
-  
+
   -- Colorscheme
   {
     'rebelot/kanagawa.nvim',
@@ -13,7 +13,7 @@ return {
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.cmd.colorscheme 'tokyonight-night'
       -- vim.cmd.colorscheme 'onedark'
-      vim.cmd.colorscheme 'kanagawa'
+      vim.cmd.colorscheme 'kanagawa-wave'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'

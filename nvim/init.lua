@@ -2,10 +2,10 @@
 -- This is the main entry point for the Neovim configuration
 
 -- Bootstrap lazy.nvim plugin manager
-require('core.lazy')
+require 'core.lazy'
 
 -- Load core configuration
-require('config')
+require 'config'
 
 -- Configure and install plugins
 --
@@ -18,7 +18,7 @@ require('config')
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup(require('plugins'), {
+require('lazy').setup(require 'plugins', {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
