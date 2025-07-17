@@ -70,16 +70,6 @@ return {
     end,
   },
 
-  -- Promise dependency for nvim-ufo
-  { 'kevinhwang91/promise-async' },
-
-  -- Code folding
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = 'kevinhwang91/promise-async',
-    config = function() end,
-  },
-
   -- Autoformat
   {
     'stevearc/conform.nvim',

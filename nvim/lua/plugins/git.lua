@@ -13,7 +13,7 @@ return {
       },
     },
   },
-  
+
   -- Git diff viewer
   {
     'sindrets/diffview.nvim',

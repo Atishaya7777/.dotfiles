@@ -76,7 +76,3 @@ vim.opt.hlsearch = true
 -- PLUGIN: Disable error quickfix list
 -- vim.g.vimtex_quickfix_enabled = 0
 vim.g.vimtex_quickfix_ignore_filters = { 'Underfull', 'Overfull' }
-
--- Set pdf viewer to sioyek
-vim.g.vimtex_view_method = 'sioyek'
-vim.g.vimtex_view_sioyek_exe = '/opt/homebrew/bin/sioyek'

@@ -19,10 +19,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -69,13 +69,3 @@ vim.keymap.set('n', '<leader>gd', function()
     vim.cmd 'DiffviewClose'
   end
 end, { desc = 'Toggle [G]it [D]iffview' })
-
--- Keybind to create a new line while in insert mode
-vim.keymap.set('i', '<C-n>', '<esc>o', { desc = 'Create new line and jump to the new line in insert mode' })
-
--- Keybind to compile and generate a .svg file while inside a dot file
-vim.keymap.set('n', 'gsvg', function()
-  local filename = vim.api.nvim_buf_get_name(0)
-  local shell_cmd = 'cdotsvg' .. filename
-  os.execute(shell_cmd)
-end)

@@ -8,13 +8,12 @@ return {
   { import = 'plugins.git' },
   { import = 'plugins.navigation' },
   { import = 'plugins.treesitter' },
-  { import = 'plugins.debug' },
   { import = 'plugins.markdown' },
   { import = 'plugins.tex' },
-  
+
   -- Import existing custom plugins
   { import = 'custom.plugins' },
-  
+
   -- Import kickstart plugins
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
