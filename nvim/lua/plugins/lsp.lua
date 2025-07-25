@@ -49,6 +49,21 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
+          if vim.bo.filetype == 'python' then
+            vim.diagnostic.config({
+              severity_sort = true,
+              underline = {
+                severity = { min = vim.diagnostic.severity.ERROR },
+              },
+              virtual_text = {
+                severity = { min = vim.diagnostic.severity.ERROR },
+              },
+              signs = {
+                severity = { min = vim.diagnostic.severity.ERROR },
+              },
+            }, event.buf)
+          end
+
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
           --
@@ -105,6 +120,28 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          local bufnr = event.buf
+          local ft = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+
+          if ft == 'python' and client.name == 'pylsp' then
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end
+
+          -- Only apply to Python buffers
+          if ft == 'python' then
+            -- Override diagnostic handler for this buffer
+            local orig_handler = vim.lsp.handlers['textDocument/publishDiagnostics']
+            vim.lsp.handlers['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+              if result.diagnostics then
+                result.diagnostics = vim.tbl_filter(function(d)
+                  return d.severity == nil or d.severity == vim.diagnostic.severity.ERROR
+                end, result.diagnostics)
+              end
+              orig_handler(_, result, ctx, config)
+            end
+          end
+
           if client and client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -170,15 +207,15 @@ return {
         pylsp = {
           pylsp = {
             plugins = {
-              pyflakes = { enabled = true },
-              pylint = { args = { '--ignore=E501,E231', '-' }, enabled = true, debounce = 200 },
-              pylsp_mypy = { enabled = false },
-              pycodestyle = {
-                enabled = true,
-                ignore = { 'E501', 'E231' },
-                maxLineLength = 120,
-              },
-              yapf = { enabled = true },
+              -- pyflakes = { enabled = false },
+              -- pylint = { args = { '--ignore=E501,E231', '-' }, enabled = false, debounce = 200 },
+              -- pylsp_mypy = { enabled = false },
+              -- pycodestyle = {
+              --   enabled = false,
+              --   ignore = { 'E501', 'E231' },
+              --   maxLineLength = 120,
+              -- },
+              -- yapf = { enabled = false },
             },
           },
         },
