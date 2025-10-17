@@ -169,6 +169,7 @@ alias ce='~/bin/ce.sh'
 
 # Make LaTeX file with template
 alias mlf='~/bin/mlf.sh'
+alias mlnf='~/bin/mlnf.sh'
 
 cdotsvg() {
     dot -Tsvg "$1" >>"$1.svg"
@@ -190,3 +191,6 @@ source /Users/atishayamaharjan/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 
 . "$HOME/.local/bin/env"
 export PATH="/Users/atishayamaharjan/.pixi/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"

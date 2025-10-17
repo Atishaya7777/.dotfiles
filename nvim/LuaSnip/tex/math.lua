@@ -43,7 +43,11 @@ return {
   }),
 
   s({ trig = ';e' }, {
-    t '\\epsilon',
+    t '\\varepsilon',
+  }),
+
+  s({ trig = ';p' }, {
+    t '\\varphi',
   }),
 
   s({ trig = 'mm', dscr = 'Inline math mode' }, fmt('$<>$', { i(1) }, { delimiters = '<>' })),
@@ -72,4 +76,8 @@ return {
   s({ trig = 'bbr', dscr = 'Snippet for \\mathbb{R}' }, t '\\mathbb{R}'),
   s({ trig = 'bbc', dscr = 'Snippet for \\mathbb{C}' }, t '\\mathbb{C}'),
   s({ trig = 'bbq', dscr = 'Snippet for \\mathbb{Q}' }, t '\\mathbb{Q}'),
+
+  -- Snippets for abstract algebra
+  s({ trig = 'hom', dscr = 'Snippet for homomorphism' }, t 'homomorphism'),
+  s({ trig = 'iso', dscr = 'Snippet for isomorphism' }, t 'isomorphism'),
 }

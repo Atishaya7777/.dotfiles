@@ -122,4 +122,10 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
   },
+
+  -- Sets the current focused buffer to the center
+  {
+    'shortcuts/no-neck-pain.nvim',
+    version = '*',
+  },
 }

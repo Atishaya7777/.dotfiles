@@ -6,6 +6,16 @@ return {
     -- tag = "v2.15", -- uncomment to pin to a specific release
     init = function()
       -- VimTeX configuration goes here
+      vim.g.vimtex_compiler_latexmk = {
+        aux_dir = 'build',
+        out_dir = '',
+        options = {
+          '-verbose',
+          '-file-line-error',
+          '-synctex=1',
+          '-interaction=nonstopmode',
+        },
+      }
     end,
   },
 }
