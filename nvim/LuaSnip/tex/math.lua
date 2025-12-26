@@ -50,6 +50,10 @@ return {
     t '\\varphi',
   }),
 
+  s({ trig = ';d' }, {
+    t '\\delta',
+  }),
+
   s({ trig = 'mm', dscr = 'Inline math mode' }, fmt('$<>$', { i(1) }, { delimiters = '<>' })),
 
   s({ trig = 'tt', dscr = 'Expand to texttt' }, fmt('\\texttt{<>}', { i(1) }, { delimiters = '<>' })),
@@ -76,8 +80,47 @@ return {
   s({ trig = 'bbr', dscr = 'Snippet for \\mathbb{R}' }, t '\\mathbb{R}'),
   s({ trig = 'bbc', dscr = 'Snippet for \\mathbb{C}' }, t '\\mathbb{C}'),
   s({ trig = 'bbq', dscr = 'Snippet for \\mathbb{Q}' }, t '\\mathbb{Q}'),
+  s({ trig = 'calC', dscr = 'Snippet for \\mathcal{C}' }, t '\\mathcal{C}'),
+  s({ trig = 'calP', dscr = 'Snippet for \\mathcal{P}' }, t '\\mathcal{P}'),
 
   -- Snippets for abstract algebra
   s({ trig = 'hom', dscr = 'Snippet for homomorphism' }, t 'homomorphism'),
   s({ trig = 'iso', dscr = 'Snippet for isomorphism' }, t 'isomorphism'),
+
+  -- Partial derivatives
+  s(
+    { trig = 'pd', dscr = 'Snippet for partial derivative \\partial' },
+    fmt('\\frac{{\\partial {<>}}}{{\\partial {<>}}}', { i(1, 'f'), i(2, 'x') }, { delimiters = '<>' })
+  ),
+
+  s(
+    { trig = 'dpd', dscr = 'Snippet for display partial derivative \\dfrac' },
+    fmt('\\dfrac{{\\partial {<>}}}{{\\partial {<>}}}', { i(1, 'f'), i(2, 'x') }, { delimiters = '<>' })
+  ),
+
+  -- Second-order partial derivatives
+  s(
+    { trig = 'p2d', dscr = 'Snippet for second-order partial derivative \\partial^2' },
+    fmt('\\frac{{\\partial^2 {<>}}}{{\\partial {<>}^2}}', { i(1, 'f'), i(2, 'x') }, { delimiters = '<>' })
+  ),
+
+  s(
+    { trig = 'dp2d', dscr = 'Snippet for display second-order partial derivative \\dfrac{\\partial^2}' },
+    fmt('\\dfrac{{\\partial^2 {<>}}}{{\\partial {<>}^2}}', { i(1, 'f'), i(2, 'x') }, { delimiters = '<>' })
+  ),
+
+  -- Mixed partial derivatives
+  s(
+    { trig = 'pmd', dscr = 'Snippet for mixed partial derivative \\partial^2/\\partial x \\partial y' },
+    fmt('\\frac{{\\partial^2 {<>}}}{{\\partial {<>} \\, \\partial {<>}}}', { i(1, 'f'), i(2, 'x'), i(3, 'y') }, { delimiters = '<>' })
+  ),
+
+  s(
+    { trig = 'dpmd', dscr = 'Snippet for display mixed partial derivative \\dfrac{\\partial^2}{\\partial x \\partial y}' },
+    fmt('\\dfrac{{\\partial^2 {<>}}}{{\\partial {<>} \\, \\partial {<>}}}', { i(1, 'f'), i(2, 'x'), i(3, 'y') }, { delimiters = '<>' })
+  ),
+
+  s({ trig = 'lr()', dscr = 'Snippet for attaching left and right to paranthesis' }, fmt('\\left(<>\\right)', { i(1) }, { delimiters = '<>' })),
+
+  s({ trig = 'lr[]', dscr = 'Snippet for attaching left and right to big brackets' }, fmt('\\left[<>\\right]', { i(1) }, { delimiters = '<>' })),
 }

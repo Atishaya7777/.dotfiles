@@ -47,8 +47,9 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
--- Decrease update time
-vim.opt.updatetime = 250
+-- Decrease update time (affects CursorHold and diagnostic updates)
+-- Set to 300ms for large projects to reduce lag
+vim.opt.updatetime = 300
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
@@ -72,6 +73,30 @@ vim.opt.scrolloff = 15
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Performance: Disable some features in large files (>100KB)
+local aug = vim.api.nvim_create_augroup('LargeFile', { clear = true })
+vim.api.nvim_create_autocmd('BufReadPre', {
+  group = aug,
+  callback = function()
+    local file_size = vim.fn.getfsize(vim.fn.expand '<afile>')
+    if file_size > 1024 * 100 then -- 100 KB
+      vim.b.large_buf = true
+      vim.opt_local.swapfile = false
+      vim.opt_local.undofile = false
+      vim.opt_local.foldenable = false
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = aug,
+  callback = function()
+    if vim.b.large_buf then
+      vim.api.nvim_echo({ { 'Large file detected, some features disabled', 'WarningMsg' } }, false, {})
+    end
+  end,
+})
 
 -- PLUGIN: Disable error quickfix list
 -- vim.g.vimtex_quickfix_enabled = 0

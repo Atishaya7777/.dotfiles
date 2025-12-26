@@ -69,3 +69,12 @@ vim.keymap.set('n', '<leader>gd', function()
     vim.cmd 'DiffviewClose'
   end
 end, { desc = 'Toggle [G]it [D]iffview' })
+
+-- Performance monitoring command
+vim.keymap.set('n', '<leader>ch', ':checkhealth<CR>', { desc = '[C]heck [H]ealth (dependencies and tools)' })
+
+-- Format buffer (uses Prettier for speed, 3s timeout)
+vim.keymap.set('n', '<leader>f', function()
+  require('conform').format { async = true, lsp_fallback = false, timeout_ms = 3000 }
+  vim.notify('Formatted with Prettier', vim.log.levels.INFO, { title = 'conform.nvim' })
+end, { desc = '[F]ormat buffer with Prettier' })

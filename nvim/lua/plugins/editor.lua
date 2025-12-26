@@ -23,7 +23,31 @@ return {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup {
-        '*',
+        filetypes = {
+          'css',
+          'scss',
+          'sass',
+          'html',
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+          'json',
+          'lua',
+          'vim',
+        },
+        user_default_options = {
+          RGB = true,
+          RRGGBB = true,
+          names = false, -- Don't highlight color names (too slow)
+          RRGGBBAA = true,
+          AARRGGBB = false,
+          rgb_fn = true,
+          hsl_fn = true,
+          css = false,
+          css_fn = true,
+          mode = 'foreground',
+        },
       }
     end,
   },
@@ -78,7 +102,7 @@ return {
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = true, lsp_fallback = false, timeout_ms = 3000 }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -86,31 +110,35 @@ return {
     },
     opts = {
       notify_on_error = true,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = {
-          typescript = true,
-          javascript = true,
-          javascriptreact = true,
-          typescriptreact = true,
-          astro = true,
-        }
-        return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        }
-      end,
+      format_on_save = false, -- Disabled to prevent slowdowns
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        -- NOTE: Removed this chunk because it kept interfering with LG work
-        javascript = { { 'eslint' } },
-        typescript = { { 'eslint' } },
-        javascriptreact = { { 'eslint' } },
-        typescriptreact = { { 'eslint' } },
-        astro = { { 'eslint', 'prettier' } },
+        -- Use Prettier for JS/TS (much faster than ESLint)
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        astro = { 'prettier' },
+        json = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+      },
+      formatters = {
+        eslint = {
+          -- ESLint caching for faster runs
+          args = function(self)
+            local args = vim.list_extend(
+              { '--stdin-filename', '$FILENAME', '--fix-dry-run', '--format=json' },
+              self:get_default_args()
+            )
+            return args
+          end,
+        },
+        prettier = {
+          -- Prettier options for faster formatting
+          args = { '--stdin-filepath', '$FILENAME', '--prose-wrap=preserve' },
+        },
       },
     },
   },
@@ -120,7 +148,21 @@ return {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
+    opts = {
+      signs = false,
+      search = {
+        args = {
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--glob=!node_modules',
+          '--glob=!.next',
+          '--glob=!dist',
+        },
+      },
+    },
   },
 
   -- Sets the current focused buffer to the center

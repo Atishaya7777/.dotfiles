@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+build
+coverage
+.turbo
+*.min.js
+.git
+.vscode
+.idea

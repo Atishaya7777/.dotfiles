@@ -78,12 +78,38 @@ return {
         pickers = {
           find_files = {
             hidden = true,
+            follow = false, -- Don't follow symlinks
           },
         },
         defaults = {
           path_display = {
             -- Shortens the path displayed while fuzzy finding to include only the first 3 characters
             shorten = 3,
+          },
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--glob=!.git',
+            '--glob=!node_modules',
+            '--glob=!.next',
+            '--glob=!dist',
+            '--glob=!build',
+            '--glob=!.turbo',
+          },
+          file_ignore_patterns = {
+            'node_modules',
+            '.next',
+            'dist',
+            'build',
+            '.git',
+            'coverage',
+            '.turbo',
           },
         },
         extensions = {

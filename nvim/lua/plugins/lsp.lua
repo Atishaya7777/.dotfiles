@@ -184,6 +184,26 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      -- Configure diagnostic display to reduce lag
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = '●',
+          severity = { min = vim.diagnostic.severity.WARN },
+        },
+        float = {
+          focusable = true,
+          style = 'minimal',
+          border = 'rounded',
+          source = 'if_many',
+          header = '',
+          prefix = '',
+        },
+        signs = true,
+        underline = false,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -223,25 +243,42 @@ return {
           settings = {
             typescript = {
               inlayHints = {
-                includeInlayParameterNameHints = 'literal',
+                includeInlayParameterNameHints = 'none',
                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
                 includeInlayFunctionParameterTypeHints = false,
                 includeInlayVariableTypeHints = false,
                 includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayEnumMemberValueHints = false,
               },
+              tsserver = {
+                maxTsServerMemory = 4096,
+              },
+              disableSemanticToken = true, -- Disable semantic tokens (expensive)
+              semanticHighlighting = false,
             },
             javascript = {
               inlayHints = {
-                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHints = 'none',
                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionParameterTypeHints = false,
+                includeInlayVariableTypeHints = false,
+                includeInlayPropertyDeclarationTypeHints = false,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayEnumMemberValueHints = false,
               },
+            },
+            js = {
+              implicitProjectConfig = {
+                exclude = { 'node_modules', 'dist', '.next', 'build', 'coverage' },
+              },
+            },
+          },
+          init_options = {
+            preferences = {
+              quotePreference = 'single',
+              importModuleSpecifierPreference = 'shortest',
+              disableSuggestions = false,
             },
           },
         },
