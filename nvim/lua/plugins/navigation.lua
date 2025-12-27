@@ -79,6 +79,7 @@ return {
           find_files = {
             hidden = true,
             follow = false, -- Don't follow symlinks
+            case_mode = 'ignore_case', -- Make search case insensitive
           },
         },
         defaults = {

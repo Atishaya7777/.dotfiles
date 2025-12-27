@@ -282,6 +282,12 @@ return {
             },
           },
         },
+        -- Disable ESLint LSP diagnostics to avoid `textDocument/diagnostic` errors in Neovim
+        eslint = {
+          handlers = {
+            ['textDocument/publishDiagnostics'] = function() end,
+          },
+        },
         tailwindcss = {
           settings = {
             tailwindCSS = {
