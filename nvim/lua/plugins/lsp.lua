@@ -217,6 +217,7 @@ return {
         clangd = {
           filetypes = {
             'c',
+            'cpp'
           },
           cmd = {
             'clangd',

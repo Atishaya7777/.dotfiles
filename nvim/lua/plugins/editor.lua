@@ -170,4 +170,8 @@ return {
     'shortcuts/no-neck-pain.nvim',
     version = '*',
   },
+
+  {
+    'github/copilot.vim'
+  }
 }

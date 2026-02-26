@@ -171,8 +171,29 @@ alias ce='~/bin/ce.sh'
 alias mlf='~/bin/mlf.sh'
 alias mlnf='~/bin/mlnf.sh'
 
+alias grex='ssh atishaya@grex.hpc.umanitoba.ca'
+
 cdotsvg() {
     dot -Tsvg "$1" >>"$1.svg"
+}
+
+
+git-ssh() {
+  if [[ "$1" == "personal" ]]; then
+    ssh-add -D
+    ssh-add ~/.ssh/github_personal
+    echo "Switched to personal GitHub key."
+  elif [[ "$1" == "work" ]]; then
+    ssh-add -D
+    ssh-add ~/.ssh/alpinist_github
+    echo "Switched to work GitHub key."
+  else
+    echo "Usage: ssh_key_switch personal|work"
+  fi
+}
+
+vibecore-ssh() {
+    ssh -i "$1" ubuntu@23.23.249.157
 }
 
 # pnpm

@@ -80,8 +80,10 @@ return {
   s({ trig = 'bbr', dscr = 'Snippet for \\mathbb{R}' }, t '\\mathbb{R}'),
   s({ trig = 'bbc', dscr = 'Snippet for \\mathbb{C}' }, t '\\mathbb{C}'),
   s({ trig = 'bbq', dscr = 'Snippet for \\mathbb{Q}' }, t '\\mathbb{Q}'),
+  s({ trig = 'bbl', dscr = 'Snippet for \\mathbb{L}' }, t '\\mathbb{L}'),
   s({ trig = 'calC', dscr = 'Snippet for \\mathcal{C}' }, t '\\mathcal{C}'),
   s({ trig = 'calP', dscr = 'Snippet for \\mathcal{P}' }, t '\\mathcal{P}'),
+  s({ trig = 'calO', dscr = 'Snippet for \\mathcal{O}' }, t '\\mathcal{O}'),
 
   -- Snippets for abstract algebra
   s({ trig = 'hom', dscr = 'Snippet for homomorphism' }, t 'homomorphism'),
@@ -123,4 +125,22 @@ return {
   s({ trig = 'lr()', dscr = 'Snippet for attaching left and right to paranthesis' }, fmt('\\left(<>\\right)', { i(1) }, { delimiters = '<>' })),
 
   s({ trig = 'lr[]', dscr = 'Snippet for attaching left and right to big brackets' }, fmt('\\left[<>\\right]', { i(1) }, { delimiters = '<>' })),
+
+  s({ trig = 'lr||', dscr = 'Snippet for attaching left and right to absolute values' }, fmt('\\left|<>\\right|', { i(1) }, { delimiters = '<>' })),
+
+  s({ trig = 'sup', dscr = 'Snippet for making the supremum be an operatorname' }, fmt('\\operatorname{sup}_{<>}', { i(1) }, { delimiters = '<>' })),
+  s({ trig = 'inf', dscr = 'Snippet for making the infimum be an operatorname' }, fmt('\\operatorname{inf}_{<>}', { i(1) }, { delimiters = '<>' })),
+  s({ trig = 'limsup', dscr = 'Snippet for making the limit supremum be an operatorname' }, fmt('\\operatorname{\\lim \\;sup}_{<>}', { i(1) }, { delimiters = '<>' })),
+  s({ trig = 'liminf', dscr = 'Snippet for making the limit infimum be an operatorname' }, fmt('\\operatorname{\\lim \\;inf}_{<>}', { i(1) }, { delimiters = '<>' })),
+  s({ trig = 'esssup', dscr = 'Snippet for making the essential supremum be an operatorname' }, fmt('\\operatorname{ess \\; sup}_{<>}', { i(1) }, { delimiters = '<>' })),
+
+  s({ trig = 'max', dscr = 'Snippet for making the max be an operatorname' }, fmt('\\operatorname{max}_{<>}\\{<>\\}', { i(1), i(2) }, { delimiters = '<>' })),
+  s({ trig = 'min', dscr = 'Snippet for making the min be an operatorname' }, fmt('\\operatorname{min}_{<>}\\{<>\\}', { i(1), i(2) }, { delimiters = '<>' })),
+
+  s({ trig = 'bigcup', dscr = 'Snippet for making the bigcup be in display mode' }, fmt('\\displaystyle\\bigcup_{<>}^{<>}', { i(1), i(2) }, { delimiters = '<>' })),
+  s({ trig = 'bigcap', dscr = 'Snippet for making the bigcap be in display mode' }, fmt('\\displaystyle\\bigcap_{<>}^{<>}', { i(1), i(2) }, { delimiters = '<>' })),
+
+  s({ trig = 'lim', dscr = 'Snippet for making the limit be in display mode' }, fmt('\\displaystyle\\lim_{<>}', { i(1) }, { delimiters = '<>' })),
+
+  s({ trig = 'len', dscr = 'Snippet for making the len be in mathrm' }, t '\\mathrm{len}'),
 }
